@@ -7,8 +7,6 @@ A Unity game that listens for specific food-related words and instantly displays
 ```mermaid
 graph LR
     A[Python Server] -->|WebSocket| B[Unity Game]
-    B --> C[Player State Changes]
-    C --> D[Avatar Switching]
 ```
 
 ---
