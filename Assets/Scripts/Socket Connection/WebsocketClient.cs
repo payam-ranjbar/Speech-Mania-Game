@@ -7,12 +7,22 @@ using WebSocketSharp;
 public class WebsocketClient : MonoBehaviour
 {
     
-     private WebSocket ws;
+    private WebSocket ws;
     private Thread websocketThread;
     private bool isRunning = false;  // Ensures the thread only starts once
     private static ConcurrentQueue<string> receivedWordsQueue = new ConcurrentQueue<string>(); 
 
     public event Action<string> OnWordReceived;
+
+    public static WebsocketClient Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance is null)
+        {
+            Instance = this;
+        }
+    }
 
     void OnGUI()
     {
