@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74b914021ae1407b85a0c805ac2ed7b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stateName: 
+  stateName: Capsule
 --- !u!1 &4533313707674337577
 GameObject:
   m_ObjectHideFlags: 0

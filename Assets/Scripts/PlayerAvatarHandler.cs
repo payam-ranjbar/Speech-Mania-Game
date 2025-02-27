@@ -16,10 +16,10 @@ public class PlayerAvatarHandler : MonoBehaviour
 
     private void InstantiateAvatar(PlayerAvatar avatar)
     {
-        var created = Instantiate(avatar, Vector3.zero, Quaternion.identity);
-        created.transform.parent = avatarRoot;
-        created.transform.position = Vector3.zero;
-        created.transform.rotation = Quaternion.identity;
+        var created = Instantiate(avatar, avatarRoot);
+        created.transform.localPosition = Vector3.zero;
+        
+        created.gameObject.name = $"new avatar {avatar.StateName}";
         
         AddAvatar(created);
         SetCurrent(created);
@@ -43,17 +43,26 @@ public class PlayerAvatarHandler : MonoBehaviour
         return true;
     }
 
+    private PlayerAvatar GetAvatarFromList(PlayerAvatar avatar)
+    {
+        return _avatarTable[avatar.StateName];
+    }
+
     private void SetCurrent(PlayerAvatar avatar)
     {
+
+        var avatarGO = GetAvatarFromList(avatar);
         if (_currentAvatar is null)
         {
-            _currentAvatar = avatar;
+            _currentAvatar = avatarGO;
+            _currentAvatar.gameObject.SetActive(true);
+            return;
         }
-
-        avatar.gameObject.SetActive(true);
+        
         _currentAvatar.gameObject.SetActive(false);
-        _currentAvatar = avatar;
+        _currentAvatar = avatarGO;
         _currentAvatar.gameObject.SetActive(true);
+
 
     }
     private bool CurrentlyActive(PlayerAvatar avatar) => _currentAvatar.StateName == avatar.StateName;
@@ -78,5 +87,7 @@ public class PlayerAvatarHandler : MonoBehaviour
     {
         eventHandler.InvokeOnStateChange(newState);
         ActivateAvatar(newState.playerAvatar);
+        Debug.LogWarning($"game object {_currentAvatar.gameObject.name} atcive is {_currentAvatar.gameObject.activeInHierarchy}");
+
     }
 }

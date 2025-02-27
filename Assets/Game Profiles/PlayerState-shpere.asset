@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateName: Sphere
   aliasNames:
-  - Circle
+  - at
   playerAvatar: {fileID: 1504976162577683220, guid: 878eb3ef8b188ae4b807dc35f63f2832, type: 3}

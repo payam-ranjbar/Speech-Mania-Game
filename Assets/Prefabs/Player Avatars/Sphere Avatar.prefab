@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9016797897547848153
 Transform:
   m_ObjectHideFlags: 0
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74b914021ae1407b85a0c805ac2ed7b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stateName: 
+  stateName: Sphere
 --- !u!1 &8097230291120943375
 GameObject:
   m_ObjectHideFlags: 0

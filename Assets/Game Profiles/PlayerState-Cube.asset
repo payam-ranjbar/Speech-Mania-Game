@@ -15,4 +15,5 @@ MonoBehaviour:
   stateName: Cube
   aliasNames:
   - Jonny
+  - some
   playerAvatar: {fileID: 6124917293623781180, guid: 48d8b54995bb9da4c80921b545646178, type: 3}
