@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 258a502e59e74fc7a7429f25e92cb65d, type: 3}
+  m_Name: PlayerState-Coffee
+  m_EditorClassIdentifier: 
+  stateName: Coffee
+  aliasNames:
+  - Cup
+  playerAvatar: {fileID: 8010742211388222541, guid: 98b393615e0e27143b62bae7d70d5eaf, type: 3}
