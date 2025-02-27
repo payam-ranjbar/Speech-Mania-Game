@@ -155,8 +155,8 @@ Camera:
   m_GameObject: {fileID: 330585543}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.9141595, g: 1, b: 0.51886785, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -179,7 +179,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 36
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -205,13 +205,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.1185064, y: 0.86374444, z: -0.23960786, w: 0.4271884}
-  m_LocalPosition: {x: 1.32724, y: 14.12019, z: 14.6233425}
+  m_LocalRotation: {x: -0.0023717755, y: 0.9870277, z: -0.15986356, w: -0.014643788}
+  m_LocalPosition: {x: 0.06241272, y: 1.3239002, z: 3.1681757}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 18.4, y: 181.7, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -505,14 +505,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   availableStates:
-  - {fileID: 11400000, guid: 11835b7ed5368624cadc63e150855d82, type: 2}
-  - {fileID: 11400000, guid: 0fa659b9ad7090443b0199f30de14817, type: 2}
-  - {fileID: 11400000, guid: 7afc658bf1fa9144f8d09a3bcf5fbd5f, type: 2}
+  - {fileID: 11400000, guid: 1c638f07265adfb44a7cc255879fb1e0, type: 2}
+  - {fileID: 11400000, guid: 6b5aac419b96b8a4eb48323adcca3fb1, type: 2}
+  - {fileID: 11400000, guid: e5aeab95712bfc34a98b743ad8b1dc48, type: 2}
+  - {fileID: 11400000, guid: 19897cfd5daba3842a53a14041eaa4dd, type: 2}
+  - {fileID: 11400000, guid: 96edde0a8e9acf54caa1fc17b549ccdb, type: 2}
+  - {fileID: 11400000, guid: a61bfaa567e5e6d4c82796dcbe928c9e, type: 2}
   playerMotor: {fileID: 1246151866}
   avatarHandler: {fileID: 1246151864}
   eventHandler: {fileID: 1246151867}
   _currentState: {fileID: 0}
-  defaultState: {fileID: 11400000, guid: 11835b7ed5368624cadc63e150855d82, type: 2}
+  defaultState: {fileID: 11400000, guid: e5aeab95712bfc34a98b743ad8b1dc48, type: 2}
 --- !u!114 &1246151866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -564,7 +567,7 @@ Transform:
   m_GameObject: {fileID: 1246151863}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.401849, y: 9.8160715, z: 10.0628}
+  m_LocalPosition: {x: 0, y: 0.33, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
