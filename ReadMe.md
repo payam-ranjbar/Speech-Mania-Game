@@ -14,12 +14,9 @@ graph LR
 ---
 
 ## Features
-- Voice-controlled avatar transformations
-- Voice-activated obstacle interaction
+- Voice-controlled game transformations
 - Real-time WebSocket communication
 - Thread-safe network handling
-- Multiple player states with aliases
-
 ---
 
 ## Requirements
