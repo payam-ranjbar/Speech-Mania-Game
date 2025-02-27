@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Threading;
+using Mono.Cecil.Cil;
 using UnityEngine;
 using WebSocketSharp;
 
@@ -9,8 +11,11 @@ public class WebsocketClient : MonoBehaviour
     
     private WebSocket ws;
     private Thread websocketThread;
-    private bool isRunning = false;  // Ensures the thread only starts once
+    private bool isRunning = false;  
     private static ConcurrentQueue<string> receivedWordsQueue = new ConcurrentQueue<string>(); 
+    private List<string> logMessages = new List<string>(); 
+   [SerializeField] private float messageDisplayTime = 20f; 
+    private Dictionary<string, float> messageTimestamps = new Dictionary<string, float>(); 
 
     public event Action<string> OnWordReceived;
 
@@ -27,9 +32,13 @@ public class WebsocketClient : MonoBehaviour
         GUIStyle buttonStyle = new GUIStyle(GUI.skin.button);
         buttonStyle.fontSize = 24; 
 
+        GUIStyle logStyle = new GUIStyle(GUI.skin.label);
+        logStyle.fontSize = 18;
+        logStyle.normal.textColor = Color.white;
+
         if (GUI.Button(new Rect(50, 50, 250, 80), "🔄 Connect WebSocket", buttonStyle))
         {
-            if(isRunning) StopWebSocket();
+            if (isRunning) StopWebSocket();
             StartWebSocket();
         }
 
@@ -37,14 +46,20 @@ public class WebsocketClient : MonoBehaviour
         {
             StopWebSocket();
         }
+
+        GUI.Label(new Rect(50, 250, 500, 500), "📜 Connection Log:", logStyle);
+        for (int i = 0; i < logMessages.Count; i++)
+        {
+            GUI.Label(new Rect(50, 280 + (i * 30), 500, 30), logMessages[i], logStyle);
+        }
     }
 
     public void StartWebSocket()
     {
-        if (isRunning) return;  // Prevent multiple connections
+        if (isRunning) return;  
         isRunning = true;
 
-        Debug.Log("🔄 Starting WebSocket connection...");
+        LogMessage("🔄 Starting WebSocket connection...");
         websocketThread = new Thread(RunWebSocket);
         websocketThread.IsBackground = true;
         websocketThread.Start();
@@ -73,7 +88,7 @@ public class WebsocketClient : MonoBehaviour
         }
         catch (Exception ex)
         {
-            Debug.LogError("🔥 WebSocket Connection Failed: " + ex.Message);
+            LogMessage("🔥 WebSocket Connection Failed: " + ex.Message);
         }
     }
 
@@ -87,7 +102,7 @@ public class WebsocketClient : MonoBehaviour
         if (!isRunning) return;  // Already stopped
 
         isRunning = false;
-        Debug.Log("🛑 Stopping WebSocket...");
+        LogMessage("🛑 Stopping WebSocket...");
         ws?.Close();
         websocketThread?.Join();
     }
@@ -96,13 +111,22 @@ public class WebsocketClient : MonoBehaviour
     {
         while (receivedWordsQueue.TryDequeue(out string word))
         {
-            Debug.Log("📥 Received Word: " + word);
+            LogMessage("📥 Received Word: " + word);
             OnWordReceived?.Invoke(word);
         }
+        float currentTime = Time.time;
+        logMessages.RemoveAll(msg => currentTime - messageTimestamps[msg] > messageDisplayTime);
     }
 
     void OnDestroy()
     {
         StopWebSocket();
     }
+    void LogMessage(string message)
+    {
+        logMessages.Add(message);
+        messageTimestamps[message] = Time.time;
+        Debug.Log(message);
+    }
+
 }
