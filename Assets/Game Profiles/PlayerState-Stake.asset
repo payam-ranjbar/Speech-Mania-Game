@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 258a502e59e74fc7a7429f25e92cb65d, type: 3}
   m_Name: PlayerState-Stake
   m_EditorClassIdentifier: 
-  stateName: stake
+  stateName: steak
   aliasNames:
   - stack
+  - stake
+  - steck
   playerAvatar: {fileID: 6985802833509740770, guid: 87a6c9ea9bd599a428637b137ae87be8, type: 3}

@@ -20,6 +20,7 @@ public class PlayerAvatar: MonoBehaviour
         {
                 if(_coroutine is null) return;
                 StopCoroutine(_coroutine);
+                _coroutine = null;
         }
 
         public void SetState(PlayerState playerState)
@@ -29,10 +30,10 @@ public class PlayerAvatar: MonoBehaviour
         
         IEnumerator RotateContinuously()
         {
-                while (true) // Infinite loop
+                while (true)
                 {
                         transform.Rotate(0, 100 * Time.deltaTime, 0);
-                        yield return null; // Wait until the next frame
+                        yield return null; 
                 }
         }
 }
