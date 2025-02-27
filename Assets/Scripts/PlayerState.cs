@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
+[CreateAssetMenu(fileName = "PlayerState-", order = 0, menuName = "Game Properties/Player State")]
 public class PlayerState : ScriptableObject
 {
     public string stateName;
@@ -10,7 +12,7 @@ public class PlayerState : ScriptableObject
 
     public bool HasName(string stateName)
     {
-        var exists = this.stateName == stateName;
+        var exists = String.Equals(this.stateName, stateName, StringComparison.CurrentCultureIgnoreCase);
 
         if (exists) return true;
 
@@ -18,7 +20,7 @@ public class PlayerState : ScriptableObject
         
         foreach (var aliasName in aliasNames)
         {
-            if (aliasName == stateName) return true;
+            if (String.Equals(aliasName, stateName, StringComparison.CurrentCultureIgnoreCase)) return true;
         }
         return false;
     }

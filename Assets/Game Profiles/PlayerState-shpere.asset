@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 258a502e59e74fc7a7429f25e92cb65d, type: 3}
   m_Name: PlayerState-shpere
   m_EditorClassIdentifier: 
-  stateName: Capsule
+  stateName: Sphere
   aliasNames:
-  - Reward
-  playerAvatar: {fileID: 3671378437892964614, guid: c534efec8d53f234bbe3a4c9c2d1a836, type: 3}
+  - Circle
+  playerAvatar: {fileID: 1504976162577683220, guid: 878eb3ef8b188ae4b807dc35f63f2832, type: 3}

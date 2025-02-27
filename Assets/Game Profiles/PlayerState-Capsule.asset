@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 258a502e59e74fc7a7429f25e92cb65d, type: 3}
   m_Name: PlayerState-Capsule
   m_EditorClassIdentifier: 
-  stateName: Cube
+  stateName: Capsule
   aliasNames:
   - Jonny
-  playerAvatar: {fileID: 0}
+  - so
+  playerAvatar: {fileID: 3671378437892964614, guid: c534efec8d53f234bbe3a4c9c2d1a836, type: 3}

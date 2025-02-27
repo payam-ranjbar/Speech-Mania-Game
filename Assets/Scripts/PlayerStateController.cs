@@ -9,30 +9,45 @@ public class PlayerStateController : MonoBehaviour
     [SerializeField] private PlayerAvatarHandler avatarHandler;
     [SerializeField] private PlayerEventHandler eventHandler;
 
-    private PlayerState _currentState;
+    [SerializeField] private PlayerState _currentState;
+    [SerializeField] private PlayerState defaultState;
+    private bool _eventsSubscribed;
 
     void Start()
     {
         playerMotor = GetComponent<PlayerMotor>();
+        SubscribeToSocketServer();
+        ChangeState(defaultState);
     }
 
     private void OnEnable()
     {
+
         SubscribeToSocketServer();
     }
 
     private void OnDisable()
     {
+
         UnSubscribeToSocketServer();
     }
 
     private void SubscribeToSocketServer()
     {
+        if(_eventsSubscribed) return;
+        if(WebsocketClient.Instance is null) return;
+        
+        _eventsSubscribed = true;
+        Debug.Log("Event Subscribed");
         WebsocketClient.Instance.OnWordReceived += OnWordReceived;
     }
 
     private void UnSubscribeToSocketServer()
     {
+        if(!_eventsSubscribed) return;
+        if(WebsocketClient.Instance is null) return;
+
+        _eventsSubscribed = false;
         WebsocketClient.Instance.OnWordReceived -= OnWordReceived;
     }
 
@@ -52,6 +67,7 @@ public class PlayerStateController : MonoBehaviour
     public void OnWordReceived(string word)
     {
         var exists = StateExists(word, out var state);
+        Debug.Log($"word detected as {word}, and it existence is{exists}");
         if(!exists) return;
         ChangeState(state);
     }
@@ -76,6 +92,7 @@ public class PlayerStateController : MonoBehaviour
 
     private bool IsStateEqual(PlayerState state)
     {
+        if (_currentState is null) return false;
         return _currentState.stateName == state.stateName;
 
     }

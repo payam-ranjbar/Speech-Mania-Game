@@ -18,10 +18,8 @@ public class WebsocketClient : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance is null)
-        {
-            Instance = this;
-        }
+        StartWebSocket();
+        Instance = this;
     }
 
     void OnGUI()
@@ -81,7 +79,6 @@ public class WebsocketClient : MonoBehaviour
 
     private static void Enqueue(MessageEventArgs e)
     {
-        Debug.Log($"Enqueued: {e.Data}");
         receivedWordsQueue.Enqueue(e.Data);
     }
 

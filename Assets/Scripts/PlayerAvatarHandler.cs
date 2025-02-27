@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAvatarHandler : MonoBehaviour
@@ -6,11 +7,20 @@ public class PlayerAvatarHandler : MonoBehaviour
     [SerializeField] private Transform avatarRoot;
     private Dictionary<string, PlayerAvatar> _avatarTable;
     private PlayerAvatar _currentAvatar;
-    private PlayerEventHandler _eventHandler;
+    [SerializeField]  private PlayerEventHandler eventHandler;
+
+    private void Awake()
+    {
+        _avatarTable = new Dictionary<string, PlayerAvatar>();
+    }
 
     private void InstantiateAvatar(PlayerAvatar avatar)
     {
-        var created = Instantiate(avatar, avatarRoot);
+        var created = Instantiate(avatar, Vector3.zero, Quaternion.identity);
+        created.transform.parent = avatarRoot;
+        created.transform.position = Vector3.zero;
+        created.transform.rotation = Quaternion.identity;
+        
         AddAvatar(created);
         SetCurrent(created);
     }
@@ -35,8 +45,16 @@ public class PlayerAvatarHandler : MonoBehaviour
 
     private void SetCurrent(PlayerAvatar avatar)
     {
+        if (_currentAvatar is null)
+        {
+            _currentAvatar = avatar;
+        }
+
+        avatar.gameObject.SetActive(true);
         _currentAvatar.gameObject.SetActive(false);
         _currentAvatar = avatar;
+        _currentAvatar.gameObject.SetActive(true);
+
     }
     private bool CurrentlyActive(PlayerAvatar avatar) => _currentAvatar.StateName == avatar.StateName;
     
@@ -58,7 +76,7 @@ public class PlayerAvatarHandler : MonoBehaviour
 
     public void ActivateAvatar(PlayerState newState)
     {
-        _eventHandler.InvokeOnStateChange(newState);
+        eventHandler.InvokeOnStateChange(newState);
         ActivateAvatar(newState.playerAvatar);
     }
 }
