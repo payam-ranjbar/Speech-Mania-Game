@@ -3,6 +3,10 @@
 
 A Unity game that listens for specific food-related words and instantly displays corresponding 3D models using real-time speech recognition. Powered by a Python WebSocket server and ScriptableObject-based food configuration.
 
+
+## Demo Video
+[![Gameplay Demo](https://payam.pro/wp-content/uploads/2025/02/vlcsnap-2025-02-27-16h29m05s831.png)](https://youtu.be/xzN17zT2pTU)
+
 ## Project Architecture
 ```mermaid
 graph LR
